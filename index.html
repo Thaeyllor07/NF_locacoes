@@ -542,7 +542,7 @@
   const mm = String(today.getMonth() + 1).padStart(2, '0'); // Meses começam do 0
   const dd = String(today.getDate()).padStart(2, '0');
 
-  const nextDate = `${yyyy}-${mm}-${dd}`;
+  const nextDate = `${dd}-${mm}-${yyyy}`;
 
   document.getElementById('date').setAttribute('min', nextDate);
 </script>
