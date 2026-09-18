@@ -1,1381 +1,717 @@
- 
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NF Locações - Aluguel de Brinquedos e Equipamentos para Festas</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#FF6600', // Orange
-                        secondary: '#FF0000', // Red
-                        dark: '#000000', // Black
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-            scroll-behavior: smooth;
-        }
-        
-        .hero-pattern {
-            background-color: #FF6600;
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-        }
-        
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-        
-        .btn-primary {
-            background-color: #FF6600;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-primary:hover {
-            background-color: #e05a00;
-            transform: translateY(-2px);
-        }
-        
-        .btn-secondary {
-            background-color: #FF0000;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-secondary:hover {
-            background-color: #e00000;
-            transform: translateY(-2px);
-        }
-    </style>
-</head>
-<body class="bg-gray-50">
-    <!-- Header/Navigation -->
-    <header class="bg-dark text-white shadow-md sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-3">
-            <div class="flex justify-between items-center">
-                <div class="flex items-center">
-                    <div class="text-2xl font-bold text-primary">NF Locações</div>
-                </div>
-                
-                <nav class="hidden md:flex space-x-10">
-                    <a href="#inicio" class="hover:text-primary transition-colors">Início</a>
-                    <a href="#produtos" class="hover:text-primary transition-colors">Produtos</a>
-                    <a href="#quem-somos" class="hover:text-primary transition-colors">Quem Somos</a>
-                    <a href="#orcamento" class="hover:text-primary transition-colors">Orçamento</a>
-                    <a href="https://g.page/r/CXyEg6o9DnYxEAE/review" class="hover:text-primary transition-colors" target="_blank"> Avaliações</a>
-
-                </nav>
-                
-                <div class="md:hidden">
-                    <button id="menu-toggle" class="text-white focus:outline-none">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-            
-            <!-- Mobile Menu -->
-            <div id="mobile-menu" class="md:hidden hidden pt-4 pb-2">
-                <a href="#inicio" class="block py-2 hover:text-primary transition-colors">Início</a>
-                <a href="#produtos" class="block py-2 hover:text-primary transition-colors">Produtos</a>
-                <a href="#quem-somos" class="block py-2 hover:text-primary transition-colors">Quem Somos</a>
-                <a href="#orcamento" class="block py-2 hover:text-primary transition-colors">Orçamento</a>
-                <a href="https://g.page/r/CXyEg6o9DnYxEAE/review" class="block py-2 hover:text-primary transition-colors">Avaliações</a>
-            </div>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section id="inicio" class="hero-pattern text-white py-20">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-10 md:mb-0">
-                    <h1 class="text-4xl md:text-5xl font-bold mb-4">Diversão garantida para sua festa !</h1>
-                    <p class="text-xl mb-8">Aluguel de brinquedos, mesas e equipamentos para eventos de todos os portes.</p>
-                    <p class="text-xl mb-8">Consulte o frete da sua região após encaminhar seu orçamento.</p>
-                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                        <a href="#produtos" class="btn-secondary text-white font-bold py-3 px-6 rounded-lg text-center">Ver Produtos</a>
-                        <a href="#orcamento" class="bg-white text-primary font-bold py-3 px-6 rounded-lg text-center hover:bg-gray-100 transition-colors">Fazer Orçamento</a>
-                    </div>
-                </div>
-                <div class="md:w-1/2 flex justify-center">
-                    <div class="relative w-full max-w-md">
-                        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="w-full">
-                            <path fill="#FF0000" d="M47.7,-57.2C59.9,-45.8,67.2,-29.6,69.2,-13.1C71.2,3.4,68,20.2,59.3,33.1C50.6,46,36.5,55,20.6,62.3C4.8,69.6,-12.8,75.2,-28.9,71.1C-45,67,-59.6,53.2,-67.4,36.5C-75.2,19.8,-76.2,0.2,-71.8,-17.5C-67.4,-35.2,-57.6,-51,-43.7,-62.1C-29.8,-73.2,-11.9,-79.6,3.9,-84.1C19.7,-88.6,35.5,-68.6,47.7,-57.2Z" transform="translate(100 100)" />
-                        </svg>
-                        <div class="absolute inset-0 flex items-center justify-center">
-        <img src="src/Boneco.png" alt="Logo NF Locações" class="h-65 w-auto drop-shadow-lg">
-    </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Products Section -->
-    <section id="produtos" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-dark mb-2">Nossos Produtos</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Oferecemos uma ampla variedade de brinquedos e equipamentos para tornar seu evento inesquecível.</p>
-            </div>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-
-
-                <!-- Product 1 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden mb-6 hover:scale-105 hover:shadow-lg transition-transform duration-300">
-               <img src="src/piscina de bolinha 1,0.jpeg.png" alt="Piscina de bolinha" style="width: 100%; height: 200px; object-fit: cover;">
-  
-              <div class="p-6">
-                 <h3 class="text-xl font-bold text-dark mb-2">
-                      Piscina de Bolinha 1 metro
-                </h3>
-              <p class="text-gray-600 mb-4">
-                   Piscina de bolinhas menor para as crianças pequenas aproveitarem também da diversão.
-             </p>
-
-             <div class="flex justify-between items-center">
-              <span class="text-2xl font-bold text-orange-600">
-                R$ 100,00
-               </span>
-            <button 
-              class="add-to-quote bg-orange-700 text-white py-2 px-4 rounded-lg hover:bg-orange-800 transition-colors"
-               data-id="1"
-               data-name="Piscina de Bolinha 1 metro"
-              data-price="100"
-       >
-        Adicionar
-      </button>
-    </div>
-  </div>
-</div>
-
-
-                
-                <!-- Product 2 -->
-<div class="bg-white rounded-xl shadow-md overflow-hidden mb-6 hover:scale-105 hover:shadow-lg transition-transform duration-300">
-  <img src="src/piscina de bolinha 1,5.jpeg" alt="Piscina de Bolinha" style="width: 100%; height: 200px; object-fit: cover;">
-  
-  <div class="p-6">
-    <h3 class="product-name text-xl font-bold text-dark mb-2">
-      Piscina de Bolinha 1,5 metro
-    </h3>
-
-    <p class="text-gray-600 mb-4">
-      Piscina de bolinhas maior para mais diversão e espaço para as crianças.
-    </p>
-
-    <div class="flex justify-between items-center">
-      <span class="product-price text-2xl font-bold text-orange-600">
-        R$ 130,00
-      </span>
-      <button 
-        class="add-to-quote bg-orange-700 text-white py-2 px-4 rounded-lg hover:bg-orange-800 transition-colors" 
-        data-id="9" 
-        data-name="Piscina de Bolinha 1,5 metro" 
-        data-price="130"
-      >
-        Adicionar
-      </button>
-    </div>
-  </div>
-</div>
-
-
-
-                <!-- Produto 3 -->
-<div class="bg-white rounded-xl shadow-md overflow-hidden mb-6 hover:scale-105 hover:shadow-lg transition-transform duration-300">
-  <!-- Imagem -->
-  <img src="src/Futebol de Sabão.jpeg" alt="Futebol de Sabão" style="width: 100%; height: 200px; object-fit: cover;">
-  
-  <div class="p-6">
-    <h3 class="text-xl font-bold text-dark mb-2">
-      Futebol de Sabão 10 Metros
-    </h3>
-
-    <p class="text-gray-600 mb-4">
-      Diversão garantida com nosso futebol com mais desafio e diversão.
-    </p>
-
-    <div class="flex justify-between items-center">
-      <span class="text-2xl font-bold text-orange-600">
-        R$ 720,00
-      </span>
-      <button 
-        class="add-to-quote bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-700 transition-colors" 
-        data-id="3" 
-        data-name="Futebol de Sabão" 
-        data-price="720"
-      >
-        Adicionar
-      </button>
-    </div>
-  </div>
-</div>
-
-<!-- Produto 22 -->
-<div class="bg-white rounded-xl shadow-md overflow-hidden mb-6 hover:scale-105 hover:shadow-lg transition-transform duration-300">
-  <!-- Imagem -->
-  <img src="src/futebolsabaomenor.jpeg" alt="Futebol de Sabão" style="width: 100%; height: 200px; object-fit: cover;">
-  
-  <div class="p-6">
-    <h3 class="text-xl font-bold text-dark mb-2">
-      Futebol de Sabão 8x4 Metros
-    </h3>
-
-    <p class="text-gray-600 mb-4">
-      Diversão garantida com nosso futebol de sabão menor
-    </p>
-
-    <div class="flex justify-between items-center">
-      <span class="text-2xl font-bold text-orange-600">
-        R$ 600,00
-      </span>
-      <button 
-        class="add-to-quote bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-700 transition-colors" 
-        data-id="22" 
-        data-name="Futebol de Sabão" 
-        data-price="600"
-      >
-        Adicionar
-      </button>
-    </div>
-  </div>
-</div>
-
-                <!-- Produto 4 -->
-<div class="bg-white rounded-xl shadow-md overflow-hidden mb-6 hover:scale-105 hover:shadow-lg transition-transform duration-300">
-  <!-- Imagem -->
-  <img src="src/Pula Pula.jpeg" alt="Castelo Pula Pula" style="width: 100%; height: 200px; object-fit: cover;">
-  
-  <div class="p-6">
-    <h3 class="text-xl font-bold text-dark mb-2">
-      Castelo Pula Pula
-    </h3>
-
-    <p class="text-gray-600 mb-4">
-      Castelo inflável para pular e se divertir em grande estilo.
-    </p>
-
-    <div class="flex justify-between items-center">
-      <span class="text-2xl font-bold text-orange-600">
-        R$ 280,00
-      </span>
-      <button 
-        class="add-to-quote bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-700 transition-colors" 
-        data-id="4" 
-        data-name="Castelo Pula Pula" 
-        data-price="280"
-      >
-        Adicionar
-      </button>
-    </div>
-  </div>
-</div>
-
-                
-                <!-- Produto 5 -->
-<div class="bg-white rounded-xl shadow-md overflow-hidden mb-6 hover:scale-105 hover:shadow-lg transition-transform duration-300">
-  <!-- Imagem -->
-  <img src="src/Castelo com escorrega.jpeg" alt="Castelo com escorrega" style="width: 100%; height: 200px; object-fit: cover;">
-  
-  <div class="p-6">
-    <h3 class="text-xl font-bold text-dark mb-2">
-      Castelo Pula Pula com Escorrega
-    </h3>
-
-    <p class="text-gray-600 mb-4">
-      Castelo inflável com escorregador para dobrar a diversão.
-    </p>
-
-    <div class="flex justify-between items-center">
-      <span class="text-2xl font-bold text-orange-600">
-        R$ 380,00
-      </span>
-      <button 
-        class="add-to-quote bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-700 transition-colors" 
-        data-id="5" 
-        data-name="Castelo Pula Pula com Escorrega" 
-        data-price="380"
-      >
-        Adicionar
-      </button>
-    </div>
-  </div>
-</div>
-
-                <!-- Produto 6 -->
-<div class="bg-white rounded-xl shadow-md overflow-hidden mb-6 hover:scale-105 hover:shadow-lg transition-transform duration-300">
-  <!-- Imagem -->
-  <img src="src/Tobogam Premium.jpeg" alt="Tobogam Premium 5MT" style="width: 100%; height: 200px; object-fit: cover;">
-  
-  <div class="p-6">
-    <h3 class="text-xl font-bold text-dark mb-2">
-      Tobogam Premium 5MT
-    </h3>
-
-    <p class="text-gray-600 mb-4">
-      Tobogam inflável de alta qualidade para escorregar com segurança e diversão.
-    </p>
-
-    <div class="flex justify-between items-center">
-      <span class="text-2xl font-bold text-orange-600">
-        R$ 580,00
-      </span>
-      <button 
-        class="add-to-quote bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-700 transition-colors" 
-        data-id="6" 
-        data-name="Tobogam Premium 5MT" 
-        data-price="580"
-      >
-        Adicionar
-      </button>
-    </div>
-  </div>
-</div>
-
-<!-- Product 27 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden mb-6 hover:scale-105 hover:shadow-lg transition-transform duration-300">
-              <!-- Imagem -->
-     <img src="src/Tobogam frente aberta.jpeg" alt="Tobogam Premium Slide" style="width: 100%; height: 250px; object-fit: cover;">
-  
-  <div class="p-6">
-    <h3 class="text-xl font-bold text-dark mb-2">
-       Tobogam inflável Slide 5MT
-    </h3>
-
-    <p class="text-gray-600 mb-4">
-       Tobogam inflável de alta qualidade slide ideal para colocar na ponta da piscina.
-    </p>
-
-    <div class="flex justify-between items-center">
-      <span class="text-2xl font-bold text-orange-600">
-        R$ 620,00
-      </span>
-      <button 
-        class="add-to-quote bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-700 transition-colors" 
-        data-id="27" 
-        data-name="Tobogam Slide" 
-        data-price="620.00"
-      >
-        Adicionar
-      </button>
-    </div>
-  </div>
-</div>
-
-                <!-- Product 1
-                 
-            -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden mb-6 hover:scale-105 hover:shadow-lg transition-transform duration-300">
-              <!-- Imagem -->
-     <img src="src/Camaelastica.jpeg" alt="Cama Elastica" style="width: 100%; height: 200px; object-fit: cover;">
-  
-  <div class="p-6">
-    <h3 class="text-xl font-bold text-dark mb-2">
-      Cama elastica 2,5 MT
-    </h3>
-
-    <p class="text-gray-600 mb-4">
-      Cama elastica com 2,5 metros para o divertimento da criançada.
-    </p>
-
-    <div class="flex justify-between items-center">
-      <span class="text-2xl font-bold text-orange-600">
-        R$ 190,00
-      </span>
-      <button 
-        class="add-to-quote bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-700 transition-colors" 
-        data-id="11" 
-        data-name="Cama elastica 2,5MT" 
-        data-price="190,00"
-      >
-        Adicionar
-      </button>
-    </div>
-  </div>
-</div> 
-
-
-<!-- Product 26-->
-<div class="bg-white rounded-xl shadow-md overflow-hidden mb-6 hover:scale-105 hover:shadow-lg transition-transform duration-300">
-  <img src="src/camaelastica3,50.jpeg" alt="Cama Elastica 3,5MT" style="width: 100%; height: 200px; object-fit: cover;">
-  
-  <div class="p-6">
-    <h3 class="product-name text-xl font-bold text-dark mb-2">
-      Cama Elastica 3,10 MT
-    </h3>
-
-    <p class="text-gray-600 mb-4">
-      Cama Elastica de tamanho maior para peso de até 130Kg !
-    </p>
-
-    <div class="flex justify-between items-center">
-      <span class="product-price text-2xl font-bold text-orange-600">
-        R$ 240,00
-      </span>
-      <button 
-        class="add-to-quote bg-orange-700 text-white py-2 px-4 rounded-lg hover:bg-orange-800 transition-colors" 
-        data-id="26" 
-        data-name="Cama elastica 3,10MT" 
-        data-price="240"
-      >
-        Adicionar
-      </button>
-    </div>
-  </div>
-</div>
-
- <!-- Product 23-->
-<div class="bg-white rounded-xl shadow-md overflow-hidden mb-6 hover:scale-105 hover:shadow-lg transition-transform duration-300">
-  <img src="src/pingpong.jpg" alt="Mesa de Ping Pong" style="width: 100%; height: 200px; object-fit: cover;">
-  
-  <div class="p-6">
-    <h3 class="product-name text-xl font-bold text-dark mb-2">
-      Mesa de Ping-Pong
-    </h3>
-
-    <p class="text-gray-600 mb-4">
-      Leve mais diversão e interação para o seu evento com nossa mesa de ping pong!
-    </p>
-
-    <div class="flex justify-between items-center">
-      <span class="product-price text-2xl font-bold text-orange-600">
-        R$ 200,00
-      </span>
-      <button 
-        class="add-to-quote bg-orange-700 text-white py-2 px-4 rounded-lg hover:bg-orange-800 transition-colors" 
-        data-id="23" 
-        data-name="Mesa de Ping Pong" 
-        data-price="200"
-      >
-        Adicionar
-      </button>
-    </div>
-  </div>
-</div>
-
- <!-- Product 24-->
-<div class="bg-white rounded-xl shadow-md overflow-hidden mb-6 hover:scale-105 hover:shadow-lg transition-transform duration-300">
-  <img src="src/pebolim.jpg" alt="Mesa de Pebolim " style="width: 100%; height: 200px; object-fit: cover;">
-  
-  <div class="p-6">
-    <h3 class="product-name text-xl font-bold text-dark mb-2">
-      Mesa de Pebolim
-    </h3>
-
-    <p class="text-gray-600 mb-4">
-      Garanta a diversão dos seus convidados com a nossa mesa de pebolim!
-    </p>
-
-    <div class="flex justify-between items-center">
-      <span class="product-price text-2xl font-bold text-orange-600">
-        R$ 200,00
-      </span>
-      <button 
-        class="add-to-quote bg-orange-700 text-white py-2 px-4 rounded-lg hover:bg-orange-800 transition-colors" 
-        data-id="24" 
-        data-name="Mesa de Pebolim" 
-        data-price="200"
-      >
-        Adicionar
-      </button>
-    </div>
-  </div>
-</div>
-
-
-
- <!-- Product 25-->
-<div class="bg-white rounded-xl shadow-md overflow-hidden mb-6 hover:scale-105 hover:shadow-lg transition-transform duration-300">
-  <img src="src/mesa de hockey.jpg" alt="Mesa de Hockey " style="width: 100%; height: 200px; object-fit: cover;">
-  
-  <div class="p-6">
-    <h3 class="product-name text-xl font-bold text-dark mb-2">
-      Mesa de Hockey
-    </h3>
-
-    <p class="text-gray-600 mb-4">
-      Garanta a diversão dos seus convidados com a nossa mesa de Hockey
-    </p>
-
-    <div class="flex justify-between items-center">
-      <span class="product-price text-2xl font-bold text-orange-600">
-        R$ 200,00
-      </span>
-      <button 
-        class="add-to-quote bg-orange-700 text-white py-2 px-4 rounded-lg hover:bg-orange-800 transition-colors" 
-        data-id="25" 
-        data-name="Mesa de Hockey" 
-        data-price="200"
-      >
-        Adicionar
-      </button>
-    </div>
-  </div>
-</div>
-
-
-                
-                <!-- Product 8 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden mb-6 hover:scale-105 hover:shadow-lg transition-transform duration-300">
-              <!-- Imagem -->
-     <img src="src/Mesas.jpeg" alt="Jogo de mesa" style="width: 100%; height: 200px; object-fit: cover;">
-  
-  <div class="p-6">
-    <h3 class="text-xl font-bold text-dark mb-2">
-      Kit mesa com 4 cadeiras
-    </h3>
-
-    <p class="text-gray-600 mb-4">
-      Conjunto de mesa com 4 cadeiras para acomodar seus convidados.
-    </p>
-
-    <div class="flex justify-between items-center">
-      <span class="text-2xl font-bold text-orange-600">
-        R$ 16,00
-      </span>
-      <button 
-        class="add-to-quote bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-700 transition-colors" 
-        data-id="8" 
-        data-name="Kit mesa" 
-        data-price="16,00"
-      >
-        Adicionar
-      </button>
-    </div>
-  </div>
-</div>
-                
- <!-- Product 22 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden mb-6 hover:scale-105 hover:shadow-lg transition-transform duration-300">
-              <!-- Imagem -->
-     <img src="src/mesaavulsa.jpg" alt="Mesa Avulsa" style="width: 100%; height: 200px; object-fit: cover;">
-  
-  <div class="p-6">
-    <h3 class="text-xl font-bold text-dark mb-2">
-      Mesa avulsa
-    </h3>
-
-    <p class="text-gray-600 mb-4">
-      Caso precise somente da mesa.
-    </p>
-
-    <div class="flex justify-between items-center">
-      <span class="text-2xl font-bold text-orange-600">
-        R$ 9,00
-      </span>
-      <button 
-        class="add-to-quote bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-700 transition-colors" 
-        data-id="22" 
-        data-name="Mesa unidade" 
-        data-price="9.00"
-      >
-        Adicionar
-      </button>
-    </div>
-  </div>
-</div>
-
- <!-- Product 23 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden mb-6 hover:scale-105 hover:shadow-lg transition-transform duration-300">
-              <!-- Imagem -->
-     <img src="src/cadeiraavulsa.jpg" alt="cadeira Avulsa" style="width: 100%; height: 200px; object-fit: cover;">
-  
-  <div class="p-6">
-    <h3 class="text-xl font-bold text-dark mb-2">
-      Cadeira avulsa
-    </h3>
-
-    <p class="text-gray-600 mb-4">
-      Caso precise somente da cadeira.
-    </p>
-
-    <div class="flex justify-between items-center">
-      <span class="text-2xl font-bold text-orange-600">
-        R$ 3,50
-      </span>
-      <button 
-        class="add-to-quote bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-700 transition-colors" 
-        data-id="23" 
-        data-name="cadeira unidade" 
-        data-price="3.50"
-      >
-        Adicionar
-      </button>
-    </div>
-  </div>
-</div>
-
-
-                <!-- Product 9 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden mb-6 hover:scale-105 hover:shadow-lg transition-transform duration-300">
-              <!-- Imagem -->
-     <img src="src/Rechaud 1 cuba.png" alt="Rechaud 1 cuba" style="width: 100%; height: 200px; object-fit: cover;">
-  
-  <div class="p-6">
-    <h3 class="text-xl font-bold text-dark mb-2">
-      Rechaud 1 cuba
-    </h3>
-
-    <p class="text-gray-600 mb-4">
-      Rechaud para manter seus alimentos aquecidos durante o evento.
-    </p>
-
-    <div class="flex justify-between items-center">
-      <span class="text-2xl font-bold text-orange-600">
-        R$ 70,00
-      </span>
-      <button 
-        class="add-to-quote bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-700 transition-colors" 
-        data-id="9" 
-        data-name="Rechaud 1 cuba" 
-        data-price="70,00"
-      >
-        Adicionar
-      </button>
-    </div>
-  </div>
-</div>
-                
-                <!-- Product 10 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden mb-6 hover:scale-105 hover:shadow-lg transition-transform duration-300">
-              <!-- Imagem -->
-     <img src="src/Rechaud 2 cubas.png" alt="Rechaud 2 cuba" style="width: 100%; height: 200px; object-fit: cover;">
-  
-  <div class="p-6">
-    <h3 class="text-xl font-bold text-dark mb-2">
-      Rechaud 2 cuba
-    </h3>
-
-    <p class="text-gray-600 mb-4">
-      Rechaud para manter seus alimentos aquecidos durante o evento.
-    </p>
-
-    <div class="flex justify-between items-center">
-      <span class="text-2xl font-bold text-orange-600">
-        R$ 80,00
-      </span>
-      <button 
-        class="add-to-quote bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-700 transition-colors" 
-        data-id="10" 
-        data-name="Rechaud 2 cuba" 
-        data-price="80,00"
-      >
-        Adicionar
-      </button>
-    </div>
-  </div>
-</div>
-
-<!-- Product 13 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden mb-6 hover:scale-105 hover:shadow-lg transition-transform duration-300">
-              <!-- Imagem -->
-     <img src="src/tenda.jpeg" alt="Tenda 3x3" style="width: 100%; height: 250px; object-fit: cover;">
-  
-  <div class="p-6">
-    <h3 class="text-xl font-bold text-dark mb-2">
-      Tenda 3x3 com até 2 metros de altura
-    </h3>
-
-    <p class="text-gray-600 mb-4">
-      Tenda com regulagem de altura para até 2 metros, ideal para ambientes abertos.
-    </p>
-
-    <div class="flex justify-between items-center">
-      <span class="text-2xl font-bold text-orange-600">
-        R$ 190,00
-      </span>
-      <button 
-        class="add-to-quote bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-700 transition-colors" 
-        data-id="13" 
-        data-name="Tenda 3x3" 
-        data-price="190,00"
-      >
-        Adicionar
-      </button>
-    </div>
-  </div>
-</div>
-
-
-
-<!-- Product 20 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden mb-6 hover:scale-105 hover:shadow-lg transition-transform duration-300">
-              <!-- Imagem -->
-     <img src="src/toalhabranca.jpg" alt="Toalha Branca" style="width: 100%; height: 250px; object-fit: cover;">
-  
-  <div class="p-6">
-    <h3 class="text-xl font-bold text-dark mb-2">
-      Toalha Branca
-    </h3>
-
-    <p class="text-gray-600 mb-4">
-      Decore suas mesas com nossas tolhas brancas
-    </p>
-
-    <div class="flex justify-between items-center">
-      <span class="text-2xl font-bold text-orange-600">
-        R$ 6,00
-      </span>
-      <button 
-        class="add-to-quote bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-700 transition-colors" 
-        data-id="20" 
-        data-name="Toalha branca" 
-        data-price="6.00"
-      >
-        Adicionar
-      </button>
-    </div>
-  </div>
-</div>
-
-<!-- Product 21 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden mb-6 hover:scale-105 hover:shadow-lg transition-transform duration-300">
-              <!-- Imagem -->
-     <img src="src/cobremanchas.jpg" alt="Cobre mancha" style="width: 100%; height: 250px; object-fit: cover;">
-  
-  <div class="p-6">
-    <h3 class="text-xl font-bold text-dark mb-2">
-      Cobre manchas
-    </h3>
-
-    <p class="text-gray-600 mb-4">
-      Cobre manchas, caso voce ja tenha as toalhas
-    </p>
-
-    <div class="flex justify-between items-center">
-      <span class="text-2xl font-bold text-orange-600">
-        R$ 3,00
-      </span>
-      <button 
-        class="add-to-quote bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-700 transition-colors" 
-        data-id="21" 
-        data-name="Cobre mancha" 
-        data-price="3.00"
-      >
-        Adicionar
-      </button>
-    </div>
-  </div>
-</div>
-
-
-<!-- Product 27 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden mb-6 hover:scale-105 hover:shadow-lg transition-transform duration-300">
-              <!-- Imagem -->
-     <img src="src/Capacadeira.jpeg" alt="Capa de cadeira" style="width: 100%; height: 250px; object-fit: cover;">
-  
-  <div class="p-6">
-    <h3 class="text-xl font-bold text-dark mb-2">
-       Capa para cadeira
-    </h3>
-
-    <p class="text-gray-600 mb-4">
-      Temos também capa para deixar mais elegante.
-    </p>
-
-    <div class="flex justify-between items-center">
-      <span class="text-2xl font-bold text-orange-600">
-        R$ 4,00
-      </span>
-      <button 
-        class="add-to-quote bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-700 transition-colors" 
-        data-id="27" 
-        data-name="Capa de cadeira" 
-        data-price="4.00"
-      >
-        Adicionar
-      </button>
-    </div>
-  </div>
-</div>
-
-<!-- Product 23 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden mb-6 hover:scale-105 hover:shadow-lg transition-transform duration-300">
-              <!-- Imagem -->
-     <img src="src/freezer.jpg" alt="Freezer esmaltec" style="width: 100%; height: 250px; object-fit: cover;">
-  
-  <div class="p-6">
-    <h3 class="text-xl font-bold text-dark mb-2">
-       Freezer esmaltec
-    </h3>
-
-    <p class="text-gray-600 mb-4">
-      325 Litros, resfria e congela 
-    </p>
-
-    <div class="flex justify-between items-center">
-      <span class="text-2xl font-bold text-orange-600">
-        R$ 200,00
-      </span>
-      <button 
-        class="add-to-quote bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-700 transition-colors" 
-        data-id="23" 
-        data-name="Freezer esmaltec" 
-        data-price="200.00"
-      >
-        Adicionar
-      </button>
-    </div>
-  </div>
-</div>
-
-
-<!-- Product 24 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden mb-6 hover:scale-105 hover:shadow-lg transition-transform duration-300">
-              <!-- Imagem -->
-     <img src="src/fliperama.jpeg" alt="Fliperama" style="width: 100%; height: 250px; object-fit: cover;">
-  
-  <div class="p-6">
-    <h3 class="text-xl font-bold text-dark mb-2">
-       Fliperama 20 mil jogos
-    </h3>
-
-    <p class="text-gray-600 mb-4">
-      Aqui temos vários games unificados retro para diversão de todas as idades.
-    </p>
-
-    <div class="flex justify-between items-center">
-      <span class="text-2xl font-bold text-orange-600">
-        R$ 200,00
-      </span>
-      <button 
-        class="add-to-quote bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-700 transition-colors" 
-        data-id="24" 
-        data-name="Fliperama" 
-        data-price="200.00"
-      >
-        Adicionar
-      </button>
-    </div>
-  </div>
-</div>
-
-
-<!-- Product 26 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden mb-6 hover:scale-105 hover:shadow-lg transition-transform duration-300">
-              <!-- Imagem -->
-     <img src="src/cinuca.jpeg" alt="Mesa de Bilhar" style="width: 100%; height: 250px; object-fit: cover;">
-  
-  <div class="p-6">
-    <h3 class="text-xl font-bold text-dark mb-2">
-       Mesa de Bilhar
-    </h3>
-
-    <p class="text-gray-600 mb-4">
-      Aqui temos essa divertida mesa de bilhar.
-    </p>
-
-    <div class="flex justify-between items-center">
-      <span class="text-2xl font-bold text-orange-600">
-        R$ 200,00
-      </span>
-      <button 
-        class="add-to-quote bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-700 transition-colors" 
-        data-id="26" 
-        data-name="mesa de bilhar" 
-        data-price="200.00"
-      >
-        Adicionar
-      </button>
-    </div>
-  </div>
-</div>
-
-<!-- Product 27-->
-<div class="bg-white rounded-xl shadow-md overflow-hidden mb-6 hover:scale-105 hover:shadow-lg transition-transform duration-300">
-  <img src="src/Karaoke.jpeg" alt="Karaokê" style="width: 100%; height: 200px; object-fit: cover;">
-  
-  <div class="p-6">
-    <h3 class="product-name text-xl font-bold text-dark mb-2">
-      Karaokê 
-    </h3>
-
-    <p class="text-gray-600 mb-4">
-      Para agitar a sua festa, vamos ver quem canta melhor !
-    </p>
-
-    <div class="flex justify-between items-center">
-      <span class="product-price text-2xl font-bold text-orange-600">
-        R$ 250,00
-      </span>
-      <button 
-        class="add-to-quote bg-orange-700 text-white py-2 px-4 rounded-lg hover:bg-orange-800 transition-colors" 
-        data-id="27" 
-        data-name="Karaokê" 
-        data-price="250"
-
-      >
-        Adicionar
-      </button>
-    </div>
-  </div>
-</div>
-
-   
-<!-- Product 28-->
-<div class="bg-white rounded-xl shadow-md overflow-hidden mb-6 hover:scale-105 hover:shadow-lg transition-transform duration-300">
-  <img src="src/pranchao.jpg" alt="Karaokê" style="width: 100%; height: 200px; object-fit: cover;">
-  
-  <div class="p-6">
-    <h3 class="product-name text-xl font-bold text-dark mb-2">
-      Mesa Pranchão
-    </h3>
-
-    <p class="text-gray-600 mb-4">
-      Tenha essa mesa para que possa colocar os alimentos para servir !
-    </p>
-
-    <div class="flex justify-between items-center">
-      <span class="product-price text-2xl font-bold text-orange-600">
-        R$ 65,00
-      </span>
-      <button 
-        class="add-to-quote bg-orange-700 text-white py-2 px-4 rounded-lg hover:bg-orange-800 transition-colors" 
-        data-id="28" 
-        data-name="Pranchão"
-        data-price="65"
-
-      >
-        Adicionar
-      </button>
-    </div>
-  </div>
-</div>
-
-
-
-    </section>
-
-    <!-- About Us Section -->
-    <section id="quem-somos" class="py-16 bg-gray-100">
-        <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold text-dark mb-2">Quem Somos</h2>
-                    <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
-                </div>
-                
-                <div class="bg-white rounded-lg shadow-lg p-8">
-                    <div class="flex flex-col md:flex-row items-center">
-                        <div class="md:w-1/3 mb-6 md:mb-0 md:pr-8">
-                            <div class="rounded-full bg-primary p-6 inline-block">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="md:w-2/3">
-                            <p class="text-gray-700 leading-relaxed mb-4">
-                                A NF Locações é uma empresa referência no aluguel de brinquedos infláveis, mesas e cadeiras, oferecendo soluções completas para eventos de todos os portes. Com um portfólio diversificado de produtos de alta qualidade e preços acessíveis, a empresa se destaca por garantir a diversão e o conforto dos seus clientes.
-                            </p>
-                            <p class="text-gray-700 leading-relaxed mb-4">
-                                Contando com uma equipe altamente capacitada e comprometida, a NF Locações se dedica a oferecer um atendimento de excelência, assegurando a satisfação e a segurança em cada evento.
-                            </p>
-                            <p class="text-gray-700 leading-relaxed">
-                                Seja para festas infantis, confraternizações ou eventos corporativos, a NF Locações é a escolha certa para tornar sua celebração ainda mais especial.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Quote Section -->
-    <section id="orcamento" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-dark mb-2">Faça seu Orçamento</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Selecione os produtos desejados e preencha o formulário para receber seu orçamento.</p>
-            </div>
-            
-            <div class="flex flex-col lg:flex-row gap-8">
-                <!-- Quote Cart -->
-                <div class="lg:w-1/2">
-                    <div class="bg-gray-100 rounded-lg p-6 shadow-md">
-                        <h3 class="text-xl font-bold text-dark mb-4">Itens Selecionados</h3>
-                        
-                        <div id="quote-items" class="mb-4">
-                            <div class="text-gray-500 text-center py-8">
-                                Nenhum item selecionado. Adicione produtos acima.
-                            </div>
-                        </div>
-                        
-                        <div class="border-t border-gray-300 pt-4">
-                            <div class="flex justify-between items-center text-xl font-bold">
-                                <span>Total:</span>
-                                <span id="quote-total" class="text-primary">R$ 0,00</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Quote Form -->
-                <div class="lg:w-1/2">
-                    <div class="bg-gray-100 rounded-lg p-6 shadow-md">
-                        <h3 class="text-xl font-bold text-dark mb-4">Seus Dados</h3>
-                        
-                        <form id="quote-form" class="space-y-4">
-                            <div>
-                                <label for="name" class="block text-gray-700 mb-1">Nome Completo</label>
-                                <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" required>
-                            </div>
-
-                           
-
-                            <div>
-  <label for="phone" class="block text-gray-700 mb-1">Telefone</label>
-  <input type="tel" id="phone" name="phone"
-         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-         placeholder="(99) 99999-9999" required>
-</div>
-
-<script>
-  const phoneInput = document.getElementById('phone');
-
-  phoneInput.addEventListener('input', function(e) {
-    let value = e.target.value.replace(/\D/g, ''); // Remove tudo que não é número
-
-    if (value.length > 11) {
-      value = value.slice(0, 11);
-    }
-
-    let formatted = '';
-
-    if (value.length > 0) {
-      formatted += '(' + value.substring(0, 2);
-    }
-    if (value.length >= 3) {
-      formatted += ') ' + value.substring(2, 7);
-    }
-    if (value.length >= 8) {
-      formatted += '-' + value.substring(7, 11);
-    }
-
-    e.target.value = formatted;
-  });
-</script>
-
-                            
-                            <div>
-                                <label for="address" class="block text-gray-700 mb-1">Endereço do Evento</label>
-                                <input type="text" id="address" name="address" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" required>
-                            </div>
-                            
-                            <div>
-  <label for="date" class="block text-gray-700 mb-1">Data do Evento</label>
-  <input type="date" id="date" name="date"
-         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-         required>
-</div>
-
-<script>
-  const today = new Date();
-  today.setDate(today.getDate() + 1); // 👉 Soma 1 dia na data atual
-
-  const yyyy = today.getFullYear();
-  const mm = String(today.getMonth() + 1).padStart(2, '0'); // Meses começam do 0
-  const dd = String(today.getDate()).padStart(2, '0');
-
-  const nextDate = `${yyyy}-${mm}-${dd}`;
-
-  document.getElementById('date').setAttribute('min', nextDate);
-</script>
-
-
-                            
-                            <div>
-                                <label for="notes" class="block text-gray-700 mb-1">Observações (opcional)</label>
-                                <textarea id="notes" name="notes" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
-                            </div>
-                            
-                            <button type="submit" id="send-whatsapp" class="w-full bg-secondary text-white font-bold py-3 px-6 rounded-lg hover:bg-red-700 transition-colors flex items-center justify-center">
-                                <button onclick="enviarWhatsapp()"
-  class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded flex items-center justify-center w-full">
-  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
-    <path
-      d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
-  </svg>
-  Enviar para WhatsApp
-</button>
-
-<script>
-  function enviarWhatsApp() {
-    const numeroWhatsApp = '5511919845179'; // EX: 55 + DDD + número (559999999999)
-
-    // Captura dos campos
-    const nome = document.getElementById('nome').value;
-    const telefone = document.getElementById('telefone').value;
-    const endereco = document.getElementById('endereco').value;
-    const data = document.getElementById('data').value;
-    const observacoes = document.getElementById('observacoes').value;
-
-    // Captura dos itens selecionados
-    const itens = document.querySelectorAll('.item-selecionado');
-    let listaItens = '';
-    itens.forEach(item => {
-      const nomeItem = item.querySelector('.nome-item').innerText;
-      const precoItem = item.querySelector('.preco-item').innerText;
-      listaItens += `- ${nomeItem} (${precoItem})%0A`;
-    });
-
-    // Captura do total
-    const total = document.getElementById('total').innerText;
-
-    // Montagem da mensagem
-    const mensagem = `*Novo Pedido*%0A%0A` +
-      `*Nome:* ${nome}%0A` +
-      `*Telefone:* ${telefone}%0A` +
-      `*Endereço do Evento:* ${endereco}%0A` +
-      `*Data do Evento:* ${data}%0A` +
-      `*Itens Selecionados:*%0A${listaItens}%0A` +
-      `*Total:* ${total}%0A%0A` +
-      `*Observações:* ${observacoes}`;
-
-    // Redireciona para WhatsApp
-    const url = `https://wa.me/${numeroWhatsApp}?text=${mensagem}`;
-    window.open(url, '_blank');
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NF Locações - Aluguel de Brinquedos e Equipamentos para Festas em Cotia</title>
+<meta name="description" content="Aluguel de infláveis, camas elásticas, mesas de jogos, mobiliário e equipamentos para festas em Cotia e região. Monte seu orçamento e receba pelo WhatsApp.">
+<meta name="theme-color" content="#F1543F">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FFF9F0;
+    --bg-alt:#FBEEDA;
+    --ink:#221733;
+    --ink-soft:#57496E;
+    --coral:#F1543F;
+    --coral-dark:#D5402C;
+    --teal:#0B7A75;
+    --teal-dark:#075451;
+    --gold:#FFC542;
+    --card-line:#EADFC8;
+    --radius-card:18px;
+    --radius-pill:999px;
+    --maxw:1180px;
   }
-</script>
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Work Sans',sans-serif;
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{
+    font-family:'Baloo 2',sans-serif;
+    font-weight:700;
+    line-height:1.12;
+    margin:0 0 .5em;
+    color:var(--ink);
+  }
+  p{margin:0 0 1em;}
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+  section{padding:88px 0;}
+  .section-head{max-width:620px;margin:0 0 44px;}
+  .section-head .kicker{
+    color:var(--coral-dark);
+    font-weight:600;
+    font-size:.95rem;
+    margin:0 0 6px;
+  }
+  .section-head h2{font-size:clamp(1.9rem,3.4vw,2.6rem);}
+  .section-head p{color:var(--ink-soft);font-size:1.08rem;margin:0;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:14px 26px;
+    border-radius:var(--radius-pill);
+    font-family:'Work Sans',sans-serif;
+    font-weight:600;
+    font-size:1rem;
+    text-decoration:none;
+    border:2px solid transparent;
+    cursor:pointer;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-coral{background:var(--coral);color:#fff;box-shadow:0 6px 0 var(--coral-dark);}
+  .btn-coral:hover{box-shadow:0 8px 0 var(--coral-dark);}
+  .btn-coral:active{transform:translateY(2px);box-shadow:0 3px 0 var(--coral-dark);}
+  .btn-outline{background:transparent;border-color:var(--ink);color:var(--ink);}
+  .btn-outline:hover{background:var(--ink);color:var(--bg);}
+  .btn-teal{background:var(--teal);color:#fff;box-shadow:0 6px 0 var(--teal-dark);}
+  .btn-teal:active{transform:translateY(2px);box-shadow:0 3px 0 var(--teal-dark);}
+  .btn:disabled{opacity:.45;cursor:not-allowed;box-shadow:none;transform:none;}
 
-                                
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+  /* NAV */
+  header.site{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,249,240,.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--card-line);
+  }
+  .nav-inner{
+    max-width:var(--maxw);margin:0 auto;padding:16px 24px;
+    display:flex;align-items:center;justify-content:space-between;gap:20px;
+  }
+  .logo{
+    font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.4rem;
+    display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);
+  }
+  .logo .dot{width:12px;height:12px;border-radius:50%;background:var(--coral);display:inline-block;}
+  nav.links{display:flex;gap:28px;align-items:center;}
+  nav.links a{text-decoration:none;color:var(--ink-soft);font-weight:600;font-size:.98rem;}
+  nav.links a:hover{color:var(--coral-dark);}
+  .nav-cta{display:flex;align-items:center;gap:14px;}
+  #cart-pill{
+    display:flex;align-items:center;gap:8px;
+    background:var(--teal);color:#fff;font-weight:700;
+    padding:9px 16px;border-radius:var(--radius-pill);
+    text-decoration:none;font-size:.92rem;
+  }
+  .burger{display:none;background:none;border:none;font-size:1.6rem;cursor:pointer;color:var(--ink);}
+
+  /* HERO */
+  .hero{padding:64px 0 40px;}
+  .hero-inner{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;}
+  .hero h1{font-size:clamp(2.3rem,4.6vw,3.5rem);}
+  .hero .lead{font-size:1.18rem;color:var(--ink-soft);max-width:480px;}
+  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin:28px 0 32px;}
+  .hero-stats{display:flex;gap:32px;flex-wrap:wrap;}
+  .hero-stats div{min-width:120px;}
+  .hero-stats strong{display:block;font-family:'Baloo 2',sans-serif;font-size:1.7rem;color:var(--coral-dark);}
+  .hero-stats span{color:var(--ink-soft);font-size:.92rem;}
+  .collage{position:relative;height:440px;}
+  .collage img{
+    position:absolute;object-fit:cover;border-radius:16px;
+    border:5px solid var(--bg);box-shadow:0 14px 30px rgba(34,23,51,.18);
+  }
+  .collage .c1{width:62%;top:0;left:6%;height:270px;transform:rotate(-4deg);z-index:2;}
+  .collage .c2{width:46%;bottom:8%;right:0;height:230px;transform:rotate(6deg);z-index:3;}
+  .collage .c3{width:38%;top:14%;right:6%;height:190px;transform:rotate(-8deg);z-index:1;}
+  .collage .badge{
+    position:absolute;bottom:0;left:0;background:var(--gold);color:var(--ink);
+    font-family:'Baloo 2',sans-serif;font-weight:700;
+    padding:14px 18px;border-radius:14px;transform:rotate(-3deg);
+    box-shadow:0 8px 18px rgba(34,23,51,.15);z-index:4;font-size:.95rem;
+  }
+  @keyframes settle{from{opacity:0;transform:translateY(18px) rotate(0);}}
+  .collage img,.collage .badge{animation:settle .7s ease both;}
+  .collage .c2{animation-delay:.12s;}
+  .collage .c3{animation-delay:.22s;}
+  .collage .badge{animation-delay:.32s;}
+
+  /* CATEGORY NAV */
+  .cat-nav{
+    position:sticky;top:73px;z-index:40;background:var(--bg);
+    border-bottom:1px solid var(--card-line);padding:14px 0;
+  }
+  .cat-nav .wrap{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;}
+  .cat-nav .wrap::-webkit-scrollbar{display:none;}
+  .cat-nav a{
+    flex:none;white-space:nowrap;text-decoration:none;
+    padding:9px 18px;border-radius:var(--radius-pill);
+    border:2px solid var(--card-line);color:var(--ink-soft);font-weight:600;font-size:.92rem;
+  }
+  .cat-nav a:hover{border-color:var(--coral);color:var(--coral-dark);}
+
+  /* CATALOG */
+  .catalog-section{padding:64px 0 20px;}
+  .cat-group{margin-bottom:56px;}
+  .cat-group h3{font-size:1.5rem;display:flex;align-items:center;gap:10px;}
+  .cat-group .cat-desc{color:var(--ink-soft);margin:0 0 24px;max-width:560px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:22px;}
+  .card{
+    background:#fff;border:1px solid var(--card-line);border-radius:var(--radius-card);
+    overflow:hidden;display:flex;flex-direction:column;
+  }
+  .card .thumb{height:170px;overflow:hidden;background:var(--bg-alt);}
+  .card .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .35s ease;}
+  .card:hover .thumb img{transform:scale(1.06);}
+  .card .body{padding:16px 18px 18px;display:flex;flex-direction:column;flex:1;}
+  .card h4{font-size:1.05rem;margin-bottom:6px;}
+  .card .desc{color:var(--ink-soft);font-size:.9rem;flex:1;margin-bottom:14px;}
+  .card .foot{display:flex;align-items:center;justify-content:space-between;gap:10px;}
+  .card .price{font-family:'Baloo 2',sans-serif;font-weight:700;color:var(--teal-dark);font-size:1.05rem;}
+  .stepper{display:flex;align-items:center;gap:8px;background:var(--bg-alt);border-radius:var(--radius-pill);padding:4px;}
+  .stepper button{
+    width:28px;height:28px;border-radius:50%;border:none;background:#fff;
+    font-size:1.05rem;font-weight:700;cursor:pointer;color:var(--coral-dark);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .stepper button:hover{background:var(--coral);color:#fff;}
+  .stepper .qty{min-width:16px;text-align:center;font-weight:700;font-size:.95rem;}
+
+  /* HOW IT WORKS */
+  .how{background:var(--teal);color:#fff;}
+  .how .section-head .kicker{color:var(--gold);}
+  .how .section-head h2, .how .section-head p{color:#fff;}
+  .how .section-head p{color:#DCEFEE;}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;}
+  .step{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:var(--radius-card);padding:26px 22px;}
+  .step .num{font-family:'Baloo 2',sans-serif;font-size:2rem;color:var(--gold);margin-bottom:10px;}
+  .step h4{color:#fff;font-size:1.1rem;}
+  .step p{color:#DCEFEE;font-size:.92rem;margin:0;}
+
+  /* WHY */
+  .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .why-card{border:1px solid var(--card-line);border-radius:var(--radius-card);padding:26px;background:#fff;}
+  .why-card .ico{
+    width:46px;height:46px;border-radius:12px;background:var(--gold);
+    display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:1.35rem;
+  }
+  .why-card h4{font-size:1.08rem;}
+  .why-card p{color:var(--ink-soft);font-size:.92rem;margin:0;}
+
+  /* AREAS */
+  .areas{background:var(--bg-alt);}
+  .areas-inner{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center;}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;}
+  .chips span{
+    background:#fff;border:1px solid var(--card-line);padding:8px 16px;border-radius:var(--radius-pill);font-weight:600;font-size:.9rem;
+  }
+
+  /* ORCAMENTO */
+  .orcamento-inner{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;}
+  .cart-box{
+    background:#fff;border:1px solid var(--card-line);border-radius:var(--radius-card);padding:26px;
+    position:sticky;top:150px;
+  }
+  .cart-box h3{font-size:1.2rem;}
+  #cart-list{list-style:none;margin:0 0 18px;padding:0;max-height:280px;overflow-y:auto;}
+  #cart-list li{
+    display:flex;justify-content:space-between;gap:10px;align-items:center;
+    padding:10px 0;border-bottom:1px solid var(--card-line);font-size:.92rem;
+  }
+  #cart-list li button{background:none;border:none;color:var(--coral-dark);font-weight:700;cursor:pointer;font-size:1rem;}
+  .empty-cart{color:var(--ink-soft);font-size:.92rem;padding:12px 0;}
+  .cart-total{display:flex;justify-content:space-between;font-family:'Baloo 2',sans-serif;font-size:1.25rem;font-weight:700;
+    border-top:2px solid var(--ink);padding-top:14px;margin-bottom:18px;}
+  form.orc-form{display:flex;flex-direction:column;gap:14px;}
+  form.orc-form label{font-size:.88rem;font-weight:600;color:var(--ink-soft);display:block;margin-bottom:5px;}
+  form.orc-form input,form.orc-form textarea{
+    width:100%;padding:11px 13px;border:1px solid var(--card-line);border-radius:10px;
+    font-family:'Work Sans',sans-serif;font-size:.95rem;background:var(--bg);
+  }
+  form.orc-form textarea{resize:vertical;min-height:70px;}
+  form.orc-form input:focus,form.orc-form textarea:focus{outline:2px solid var(--teal);outline-offset:1px;}
+
+  /* FAQ */
+  .faq-list{max-width:760px;}
+  details{border-bottom:1px solid var(--card-line);padding:18px 0;}
+  details summary{
+    cursor:pointer;font-family:'Baloo 2',sans-serif;font-weight:600;font-size:1.05rem;
+    list-style:none;display:flex;justify-content:space-between;align-items:center;gap:14px;
+  }
+  details summary::-webkit-details-marker{display:none;}
+  details summary::after{content:'+';font-size:1.4rem;color:var(--coral);flex:none;}
+  details[open] summary::after{content:'–';}
+  details p{margin:12px 0 0;color:var(--ink-soft);}
+
+  /* FINAL CTA */
+  .final-cta{background:var(--coral);color:#fff;text-align:center;}
+  .final-cta h2{color:#fff;font-size:clamp(1.9rem,3.6vw,2.7rem);}
+  .final-cta p{color:#FFE4DD;font-size:1.1rem;max-width:520px;margin:0 auto 28px;}
+  .final-cta .btn-outline{border-color:#fff;color:#fff;}
+  .final-cta .btn-outline:hover{background:#fff;color:var(--coral-dark);}
+  .final-cta .btn-teal{box-shadow:0 6px 0 var(--teal-dark);}
+
+  /* FOOTER */
+  footer{background:var(--ink);color:#E7E1F2;padding:64px 0 28px;}
+  .foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:40px;margin-bottom:40px;}
+  footer h4{color:#fff;font-size:1rem;}
+  footer ul{list-style:none;padding:0;margin:0;}
+  footer li{margin-bottom:10px;font-size:.92rem;color:#C9C0DB;}
+  footer a{text-decoration:none;color:#C9C0DB;}
+  footer a:hover{color:#fff;}
+  .foot-logo{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.3rem;color:#fff;margin-bottom:10px;}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,.12);padding-top:22px;font-size:.85rem;color:#9E93B6;text-align:center;}
+
+  @media (max-width:860px){
+    .hero-inner,.areas-inner,.orcamento-inner{grid-template-columns:1fr;}
+    .collage{height:320px;margin-top:12px;}
+    .steps{grid-template-columns:1fr 1fr;}
+    .why-grid{grid-template-columns:1fr 1fr;}
+    .foot-grid{grid-template-columns:1fr 1fr;}
+    nav.links{display:none;}
+    .cart-box{position:static;}
+  }
+  @media (max-width:560px){
+    section{padding:60px 0;}
+    .steps,.why-grid,.foot-grid{grid-template-columns:1fr;}
+    .cat-nav{top:64px;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    .collage img,.collage .badge{animation:none;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="nav-inner">
+    <a href="#topo" class="logo"><span class="dot"></span>NF Locações</a>
+    <nav class="links">
+      <a href="#catalogo">Catálogo</a>
+      <a href="#como-funciona">Como Funciona</a>
+      <a href="#por-que">Por que a NF</a>
+      <a href="#duvidas">Dúvidas</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#orcamento" id="cart-pill">🧾 <span id="cart-count">0</span> itens</a>
+      <a class="btn btn-coral" href="https://wa.me/5511919845179?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20fazer%20um%20or%C3%A7amento." target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+  </div>
+</header>
+
+<main id="topo">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div>
+        <h1>Brinquedos e equipamentos que fazem a festa acontecer</h1>
+        <p class="lead">Infláveis, camas elásticas, mesas de jogos, mobiliário e equipamentos de apoio para festas de todos os portes em Cotia e região. Monte seu orçamento aqui e finalize pelo WhatsApp.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-coral" href="#catalogo">Ver catálogo completo</a>
+          <a class="btn btn-outline" href="https://wa.me/5511919845179?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20os%20itens%20dispon%C3%ADveis." target="_blank" rel="noopener">Falar no WhatsApp</a>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-dark text-white py-10">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between">
-                <div class="mb-6 md:mb-0">
-                    <h3 class="text-2xl font-bold text-primary mb-4">NF Locações</h3>
-                    <p class="text-gray-400 max-w-xs">Soluções completas para eventos de todos os portes. Garantimos diversão e conforto para seus convidados.</p>
-                </div>
-                
-                <div class="mb-6 md:mb-0">
-                    <h4 class="text-lg font-semibold mb-4">Links Rápidos</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#inicio" class="text-gray-400 hover:text-primary transition-colors">Início</a></li>
-                        <li><a href="#produtos" class="text-gray-400 hover:text-primary transition-colors">Produtos</a></li>
-                        <li><a href="#quem-somos" class="text-gray-400 hover:text-primary transition-colors">Quem Somos</a></li>
-                        <li><a href="#orcamento" class="text-gray-400 hover:text-primary transition-colors">Orçamento</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Contato</h4>
-                    <ul class="space-y-2">
-                        <li class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                            </svg>
-                            <span class="text-gray-400">WhatsApp - 11 91984-5179 </span>
-                        </li>
-                        <li class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                            </svg>
-                            <span class="text-gray-400">nflocacoescotia@gmail.com</span>
-                        </li>
-                        <li class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                            </svg>
-                            <span class="text-gray-400">São Paulo, SP</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="border-t border-gray-800 mt-8 pt-6 text-center">
-                <p class="text-gray-500">&copy; 2025 NF Locações. Todos os direitos reservados.</p>
-            </div>
+        <div class="hero-stats">
+          <div><strong>27+</strong><span>itens no catálogo</span></div>
+          <div><strong>Entrega</strong><span>e montagem inclusas</span></div>
+          <div><strong>Cotia</strong><span>e região</span></div>
         </div>
-    </footer>
+      </div>
+      <div class="collage">
+        <img class="c1" src="https://nflocacoes.com.br/src/Camaelastica.jpeg" alt="Cama elástica NF Locações">
+        <img class="c2" src="https://nflocacoes.com.br/src/Pula%20Pula.jpeg" alt="Castelo pula-pula inflável">
+        <img class="c3" src="https://nflocacoes.com.br/src/piscina%20de%20bolinha%201,5.jpeg" alt="Piscina de bolinhas">
+        <div class="badge">Monte seu<br>orçamento →</div>
+      </div>
+    </div>
+  </section>
 
-    <script>
-        // Mobile menu toggle
-        document.getElementById('menu-toggle').addEventListener('click', function() {
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenu.classList.toggle('hidden');
-        });
-        
-        // Quote system
-        let quoteItems = [];
-        const quoteItemsContainer = document.getElementById('quote-items');
-        const quoteTotalElement = document.getElementById('quote-total');
-        
-        // Add event listeners to all "Add to Quote" buttons
-        document.querySelectorAll('.add-to-quote').forEach(button => {
-            button.addEventListener('click', function() {
-                const id = this.getAttribute('data-id');
-                const name = this.getAttribute('data-name');
-                const price = parseFloat(this.getAttribute('data-price'));
-                
-                // Check if item already exists in quote
-                const existingItem = quoteItems.find(item => item.id === id);
-                
-                if (existingItem) {
-                    existingItem.quantity += 1;
-                } else {
-                    quoteItems.push({
-                        id,
-                        name,
-                        price,
-                        quantity: 1
-                    });
-                }
-                
-                updateQuoteDisplay();
-                
-                // Show notification
-                const notification = document.createElement('div');
-                notification.className = 'fixed bottom-4 right-4 bg-primary text-white px-4 py-2 rounded-lg shadow-lg z-50 animate-fade-in-out';
-                notification.textContent = `${name} adicionado ao orçamento!`;
-                document.body.appendChild(notification);
-                
-                setTimeout(() => {
-                    notification.remove();
-                }, 3000);
-            });
-        });
-        
-        // Update the quote display
-        function updateQuoteDisplay() {
-            if (quoteItems.length === 0) {
-                quoteItemsContainer.innerHTML = `
-                    <div class="text-gray-500 text-center py-8">
-                        Nenhum item selecionado. Adicione produtos acima.
-                    </div>
-                `;
-            } else {
-                let html = '';
-                
-                quoteItems.forEach(item => {
-                    html += `
-                        <div class="flex justify-between items-center py-2 border-b border-gray-200">
-                            <div>
-                                <span class="font-medium">${item.name}</span>
-                                <div class="text-sm text-gray-500">R$ ${item.price.toFixed(2)} x ${item.quantity}</div>
-                            </div>
-                            <div class="flex items-center">
-                                <span class="font-medium mr-4">R$ ${(item.price * item.quantity).toFixed(2)}</span>
-                                <div class="flex items-center border border-gray-300 rounded-lg overflow-hidden">
-                                    <button class="decrease-quantity px-2 py-1 bg-gray-200 hover:bg-gray-300 transition-colors" data-id="${item.id}">-</button>
-                                    <span class="px-3">${item.quantity}</span>
-                                    <button class="increase-quantity px-2 py-1 bg-gray-200 hover:bg-gray-300 transition-colors" data-id="${item.id}">+</button>
-                                </div>
-                                <button class="remove-item ml-2 text-red-500 hover:text-red-700" data-id="${item.id}">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                    `;
-                });
-                
-                quoteItemsContainer.innerHTML = html;
-                
-                // Add event listeners to quantity buttons
-                document.querySelectorAll('.decrease-quantity').forEach(button => {
-                    button.addEventListener('click', function() {
-                        const id = this.getAttribute('data-id');
-                        const item = quoteItems.find(item => item.id === id);
-                        
-                        if (item.quantity > 1) {
-                            item.quantity -= 1;
-                        } else {
-                            quoteItems = quoteItems.filter(item => item.id !== id);
-                        }
-                        
-                        updateQuoteDisplay();
-                    });
-                });
-                
-                document.querySelectorAll('.increase-quantity').forEach(button => {
-                    button.addEventListener('click', function() {
-                        const id = this.getAttribute('data-id');
-                        const item = quoteItems.find(item => item.id === id);
-                        item.quantity += 1;
-                        updateQuoteDisplay();
-                    });
-                });
-                
-                document.querySelectorAll('.remove-item').forEach(button => {
-                    button.addEventListener('click', function() {
-                        const id = this.getAttribute('data-id');
-                        quoteItems = quoteItems.filter(item => item.id !== id);
-                        updateQuoteDisplay();
-                    });
-                });
-            }
-            
-            // Update total
-            const total = quoteItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            quoteTotalElement.textContent = `R$ ${total.toFixed(2)}`;
-        }
-        
-        document.getElementById('quote-form').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const name = document.getElementById('name').value;
-        const phone = document.getElementById('phone').value;
-        const address = document.getElementById('address').value;
-        const date = document.getElementById('date').value;
-        const notes = document.getElementById('notes').value;
-        
-        if (quoteItems.length === 0) {
-            alert('Por favor, adicione pelo menos um item ao orçamento.');
-            return;
-        }
-        
-        let message = `*Orçamento NF Locações*\n\n`;
-        message += `*Nome:* ${name}\n`;
-        message += `*Telefone:* ${phone}\n`;
-        message += `*Endereço:* ${address}\n`;
-        message += `*Data do Evento:* ${date}\n`;
-        
-        if (notes) {
-            message += `*Observações:* ${notes}\n`;
-        }
-        
-        message += `\n*Itens Selecionados:*\n`;
-        
-        let total = 0;
-        quoteItems.forEach(item => {
-            const itemTotal = item.price * item.quantity;
-            message += `- ${item.name}: R$ ${item.price.toFixed(2)} x ${item.quantity} = R$ ${itemTotal.toFixed(2)}\n`;
-            total += itemTotal;
-        });
-        
-        message += `\n*Total: R$ ${total.toFixed(2)}*`;
-        
-        const encodedMessage = encodeURIComponent(message);
-        const numero = '5511919845179'; // Número destino
-        
-        window.open(`https://wa.me/${numero}?text=${encodedMessage}`, '_blank');
+  <!-- CATEGORY NAV -->
+  <nav class="cat-nav" aria-label="Categorias do catálogo">
+    <div class="wrap">
+      <a href="#cat-inflaveis">Infláveis &amp; Piscinas</a>
+      <a href="#cat-jogos">Mesas de Jogos</a>
+      <a href="#cat-mobiliario">Mobiliário</a>
+      <a href="#cat-equipamentos">Equipamentos</a>
+      <a href="#orcamento">Meu orçamento</a>
+    </div>
+  </nav>
+
+  <!-- CATALOG -->
+  <section class="catalog-section" id="catalogo">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">Catálogo</p>
+        <h2>Escolha os itens da sua festa</h2>
+        <p>Toque em <strong>+</strong> para adicionar um item ao orçamento. Você pode ajustar as quantidades a qualquer momento antes de enviar pelo WhatsApp.</p>
+      </div>
+
+      <div class="cat-group" id="cat-inflaveis">
+        <h3>🎈 Infláveis &amp; Piscinas</h3>
+        <p class="cat-desc">Camas elásticas, castelos infláveis, tobogãs e piscinas de bolinhas — os queridinhos da criançada.</p>
+        <div class="grid" data-category="inflaveis"></div>
+      </div>
+
+      <div class="cat-group" id="cat-jogos">
+        <h3>🏓 Mesas de Jogos</h3>
+        <p class="cat-desc">Diversão para todas as idades: ping-pong, pebolim, hockey, sinuca, fliperama e karaokê.</p>
+        <div class="grid" data-category="jogos"></div>
+      </div>
+
+      <div class="cat-group" id="cat-mobiliario">
+        <h3>🪑 Mobiliário</h3>
+        <p class="cat-desc">Mesas, cadeiras, toalhas e tendas para acomodar os convidados com conforto.</p>
+        <div class="grid" data-category="mobiliario"></div>
+      </div>
+
+      <div class="cat-group" id="cat-equipamentos">
+        <h3>🔌 Equipamentos</h3>
+        <p class="cat-desc">Rechauds e freezer para manter tudo fresco e quentinho durante o evento.</p>
+        <div class="grid" data-category="equipamentos"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how" id="como-funciona">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">Como funciona</p>
+        <h2>Do orçamento à festa, em 4 passos</h2>
+      </div>
+      <div class="steps">
+        <div class="step"><div class="num">1</div><h4>Monte seu orçamento</h4><p>Escolha os itens no catálogo e ajuste as quantidades.</p></div>
+        <div class="step"><div class="num">2</div><h4>Envie pelo WhatsApp</h4><p>Preencha seus dados e receba a confirmação e o valor do frete.</p></div>
+        <div class="step"><div class="num">3</div><h4>Entrega e montagem</h4><p>Nossa equipe leva, monta e testa tudo no local combinado.</p></div>
+        <div class="step"><div class="num">4</div><h4>Aproveite a festa</h4><p>Depois do evento, retiramos tudo sem complicação.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section id="por-que">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">Por que a NF</p>
+        <h2>Cuidado do orçamento até a retirada</h2>
+      </div>
+      <div class="why-grid">
+        <div class="why-card"><div class="ico">🧽</div><h4>Itens higienizados</h4><p>Todo equipamento é limpo e revisado antes de cada locação.</p></div>
+        <div class="why-card"><div class="ico">🚚</div><h4>Entrega e montagem</h4><p>Nossa equipe leva, monta e retira. Taxa de frete conforme a região.</p></div>
+        <div class="why-card"><div class="ico">🛡️</div><h4>Segurança em primeiro lugar</h4><p>Infláveis e camas elásticas com redes de proteção e materiais resistentes.</p></div>
+        <div class="why-card"><div class="ico">💬</div><h4>Atendimento direto</h4><p>Orçamento e dúvidas resolvidos rapidamente pelo WhatsApp.</p></div>
+        <div class="why-card"><div class="ico">💳</div><h4>Pagamento facilitado</h4><p>Aceitamos PIX, dinheiro e transferência, com condições combinadas.</p></div>
+        <div class="why-card"><div class="ico">📦</div><h4>Catálogo completo</h4><p>De brinquedos a mobiliário e equipamentos, tudo em um só lugar.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AREAS -->
+  <section class="areas">
+    <div class="wrap areas-inner">
+      <div>
+        <p class="kicker" style="color:var(--coral-dark);font-weight:600;">Área de atendimento</p>
+        <h2>Levamos a festa até você</h2>
+        <p style="color:var(--ink-soft);">Atendemos Cotia e cidades da região com entrega, montagem e retirada combinadas no orçamento.</p>
+        <div class="chips">
+          <span>Cotia</span><span>Granja Viana</span><span>Vargem Grande Paulista</span>
+          <span>Carapicuíba</span><span>Jandira</span><span>Embu das Artes</span><span>São Paulo, SP</span>
+        </div>
+      </div>
+      <div>
+        <img src="https://nflocacoes.com.br/src/Castelo%20com%20escorrega.jpeg" alt="Castelo inflável com escorregador NF Locações" style="border-radius:var(--radius-card);border:1px solid var(--card-line);">
+      </div>
+    </div>
+  </section>
+
+  <!-- ORCAMENTO -->
+  <section id="orcamento">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">Orçamento</p>
+        <h2>Finalize seu pedido</h2>
+        <p>Confira os itens escolhidos, preencha seus dados e envie direto para o nosso WhatsApp.</p>
+      </div>
+      <div class="orcamento-inner">
+        <div class="cart-box">
+          <h3>Itens selecionados</h3>
+          <ul id="cart-list"></ul>
+          <p class="empty-cart" id="empty-msg">Nenhum item selecionado ainda. Escolha no catálogo acima.</p>
+          <div class="cart-total"><span>Total</span><span id="cart-total">R$ 0,00</span></div>
+
+          <form class="orc-form" id="orc-form">
+            <div>
+              <label for="f-nome">Nome completo</label>
+              <input type="text" id="f-nome" required>
+            </div>
+            <div>
+              <label for="f-tel">Telefone</label>
+              <input type="tel" id="f-tel" required>
+            </div>
+            <div>
+              <label for="f-end">Endereço do evento</label>
+              <input type="text" id="f-end" required>
+            </div>
+            <div>
+              <label for="f-data">Data do evento</label>
+              <input type="date" id="f-data" required>
+            </div>
+            <div>
+              <label for="f-obs">Observações (opcional)</label>
+              <textarea id="f-obs"></textarea>
+            </div>
+            <button type="submit" class="btn btn-teal" style="justify-content:center;">Enviar para WhatsApp</button>
+          </form>
+        </div>
+
+        <div>
+          <img src="https://nflocacoes.com.br/src/Tobogam%20frente%20aberta.jpeg" alt="Tobogã inflável NF Locações" style="border-radius:var(--radius-card);border:1px solid var(--card-line);margin-bottom:22px;">
+          <p style="color:var(--ink-soft);">Consulte o valor do frete da sua região após enviar o orçamento — respondemos rápido com disponibilidade, entrega e forma de pagamento.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="duvidas">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">Dúvidas</p>
+        <h2>Perguntas frequentes</h2>
+      </div>
+      <div class="faq-list">
+        <details>
+          <summary>Tem taxa de entrega?</summary>
+          <p>Sim, a taxa de entrega varia conforme a região do evento. O valor é confirmado junto com o orçamento pelo WhatsApp.</p>
+        </details>
+        <details>
+          <summary>Vocês fazem a montagem e a retirada?</summary>
+          <p>Sim. Nossa equipe leva, monta e testa tudo no local, e depois retorna para retirar os itens ao fim do evento.</p>
+        </details>
+        <details>
+          <summary>Os infláveis precisam de tomada elétrica?</summary>
+          <p>Sim, os infláveis e o tobogã utilizam soprador e precisam de uma tomada 110V próxima ao local de montagem. Camas elásticas e piscinas de bolinhas não precisam de energia.</p>
+        </details>
+        <details>
+          <summary>E se chover no dia da festa?</summary>
+          <p>Itens infláveis podem ser montados em áreas cobertas como garagens e salões. Sem espaço coberto disponível, entre em contato para reagendar.</p>
+        </details>
+        <details>
+          <summary>Quais formas de pagamento vocês aceitam?</summary>
+          <p>Aceitamos PIX, dinheiro e transferência bancária. As condições são combinadas no momento da reserva.</p>
+        </details>
+        <details>
+          <summary>Com quanto tempo de antecedência devo reservar?</summary>
+          <p>Recomendamos de 7 a 15 dias, principalmente para fins de semana. Pedidos de última hora podem ter disponibilidade — consulte pelo WhatsApp.</p>
+        </details>
+        <details>
+          <summary>Posso alugar só mesas e cadeiras, sem brinquedos?</summary>
+          <p>Sim, todos os itens do catálogo podem ser locados separadamente, incluindo mobiliário e equipamentos de apoio.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta">
+    <div class="wrap">
+      <h2>Pronto para garantir a diversão da sua festa?</h2>
+      <p>Monte seu orçamento no catálogo ou fale direto com a gente pelo WhatsApp.</p>
+      <div class="hero-ctas" style="justify-content:center;">
+        <a class="btn btn-teal" href="https://wa.me/5511919845179?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20loca%C3%A7%C3%A3o%20de%20brinquedos%20e%20equipamentos." target="_blank" rel="noopener">Solicitar via WhatsApp</a>
+        <a class="btn btn-outline" href="tel:+5511919845179">Ligar agora</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo">NF Locações</div>
+        <p style="color:#C9C0DB;font-size:.92rem;">Soluções completas em aluguel de brinquedos, mesas de jogos, mobiliário e equipamentos para festas e eventos de todos os portes.</p>
+      </div>
+      <div>
+        <h4>Links rápidos</h4>
+        <ul>
+          <li><a href="#catalogo">Catálogo</a></li>
+          <li><a href="#como-funciona">Como funciona</a></li>
+          <li><a href="#por-que">Por que a NF</a></li>
+          <li><a href="#orcamento">Orçamento</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contato</h4>
+        <ul>
+          <li><a href="https://wa.me/5511919845179" target="_blank" rel="noopener">WhatsApp - (11) 91984-5179</a></li>
+          <li><a href="mailto:nflocacoescotia@gmail.com">nflocacoescotia@gmail.com</a></li>
+          <li>São Paulo, SP</li>
+          <li><a href="https://g.page/r/CXyEg6o9DnYxEAE/review" target="_blank" rel="noopener">Ver avaliações no Google</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">© 2026 NF Locações. Todos os direitos reservados.</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var WHATSAPP_NUMBER = "5511919845179";
+
+  var products = [
+    {id:'p1',cat:'inflaveis',name:'Piscina de Bolinha 1 metro',desc:'Piscina de bolinhas menor, ideal para os pequenos aproveitarem a diversão.',price:100,img:'https://nflocacoes.com.br/src/piscina%20de%20bolinha%201,0.jpeg.png'},
+    {id:'p2',cat:'inflaveis',name:'Piscina de Bolinha 1,5 metro',desc:'Piscina de bolinhas maior, com mais espaço e diversão para as crianças.',price:130,img:'https://nflocacoes.com.br/src/piscina%20de%20bolinha%201,5.jpeg'},
+    {id:'p3',cat:'inflaveis',name:'Futebol de Sabão 10 Metros',desc:'Campo maior, com mais desafio, escorregões e diversão garantida.',price:720,img:'https://nflocacoes.com.br/src/Futebol%20de%20Sab%C3%A3o.jpeg'},
+    {id:'p4',cat:'inflaveis',name:'Futebol de Sabão 8x4 Metros',desc:'Versão compacta do futebol de sabão, ótima para espaços menores.',price:600,img:'https://nflocacoes.com.br/src/futebolsabaomenor.jpeg'},
+    {id:'p5',cat:'inflaveis',name:'Castelo Pula Pula',desc:'Castelo inflável clássico para pular e se divertir em grande estilo.',price:280,img:'https://nflocacoes.com.br/src/Pula%20Pula.jpeg'},
+    {id:'p6',cat:'inflaveis',name:'Castelo Pula Pula com Escorrega',desc:'Castelo inflável com escorregador integrado, para dobrar a diversão.',price:380,img:'https://nflocacoes.com.br/src/Castelo%20com%20escorrega.jpeg'},
+    {id:'p7',cat:'inflaveis',name:'Tobogã Premium 5MT',desc:'Tobogã inflável de alta qualidade, seguro para escorregar com estilo.',price:580,img:'https://nflocacoes.com.br/src/Tobogam%20Premium.jpeg'},
+    {id:'p8',cat:'inflaveis',name:'Tobogã Inflável Slide 5MT',desc:'Modelo slide, ideal para instalar na ponta da piscina.',price:620,img:'https://nflocacoes.com.br/src/Tobogam%20frente%20aberta.jpeg'},
+    {id:'p9',cat:'inflaveis',name:'Cama Elástica 2,5 MT',desc:'Cama elástica para o divertimento garantido da criançada.',price:190,img:'https://nflocacoes.com.br/src/Camaelastica.jpeg'},
+    {id:'p10',cat:'inflaveis',name:'Cama Elástica 3,10 MT',desc:'Modelo maior, com estrutura reforçada para até 130 kg.',price:240,img:'https://nflocacoes.com.br/src/camaelastica3,50.jpeg'},
+
+    {id:'p11',cat:'jogos',name:'Mesa de Ping-Pong',desc:'Leve mais diversão e interação para o seu evento.',price:200,img:'https://nflocacoes.com.br/src/pingpong.jpg'},
+    {id:'p12',cat:'jogos',name:'Mesa de Pebolim',desc:'O clássico futebol de mesa para partidas rápidas entre os convidados.',price:200,img:'https://nflocacoes.com.br/src/pebolim.jpg'},
+    {id:'p13',cat:'jogos',name:'Mesa de Hockey',desc:'Mesa de hockey de mesa para garantir a diversão da galera.',price:200,img:'https://nflocacoes.com.br/src/mesa%20de%20hockey.jpg'},
+    {id:'p14',cat:'jogos',name:'Fliperama 20 Mil Jogos',desc:'Vários games retro reunidos em um só fliperama, para todas as idades.',price:200,img:'https://nflocacoes.com.br/src/fliperama.jpeg'},
+    {id:'p15',cat:'jogos',name:'Mesa de Bilhar',desc:'Mesa de sinuca completa para partidas em família ou entre amigos.',price:200,img:'https://nflocacoes.com.br/src/cinuca.jpeg'},
+    {id:'p16',cat:'jogos',name:'Karaokê',desc:'Para agitar a festa e descobrir quem canta melhor.',price:250,img:'https://nflocacoes.com.br/src/Karaoke.jpeg'},
+
+    {id:'p17',cat:'mobiliario',name:'Kit Mesa com 4 Cadeiras',desc:'Conjunto de mesa com 4 cadeiras para acomodar os convidados.',price:16,img:'https://nflocacoes.com.br/src/Mesas.jpeg'},
+    {id:'p18',cat:'mobiliario',name:'Mesa Avulsa',desc:'Caso precise apenas da mesa, sem as cadeiras.',price:9,img:'https://nflocacoes.com.br/src/mesaavulsa.jpg'},
+    {id:'p19',cat:'mobiliario',name:'Cadeira Avulsa',desc:'Caso precise apenas da cadeira.',price:3.5,img:'https://nflocacoes.com.br/src/cadeiraavulsa.jpg'},
+    {id:'p20',cat:'mobiliario',name:'Toalha Branca',desc:'Decore suas mesas com nossas toalhas brancas.',price:6,img:'https://nflocacoes.com.br/src/toalhabranca.jpg'},
+    {id:'p21',cat:'mobiliario',name:'Cobre Manchas',desc:'Cobre manchas para quem já tem as próprias toalhas.',price:3,img:'https://nflocacoes.com.br/src/cobremanchas.jpg'},
+    {id:'p22',cat:'mobiliario',name:'Capa para Cadeira',desc:'Deixe o ambiente mais elegante com capas para as cadeiras.',price:4,img:'https://nflocacoes.com.br/src/Capacadeira.jpeg'},
+    {id:'p23',cat:'mobiliario',name:'Tenda 3x3',desc:'Regulagem de altura de até 2 metros, ideal para ambientes abertos.',price:190,img:'https://nflocacoes.com.br/src/tenda.jpeg'},
+    {id:'p24',cat:'mobiliario',name:'Mesa Pranchão',desc:'Ideal para organizar e servir os alimentos do evento.',price:65,img:'https://nflocacoes.com.br/src/pranchao.jpg'},
+
+    {id:'p25',cat:'equipamentos',name:'Rechaud 1 Cuba',desc:'Mantém os alimentos aquecidos durante todo o evento.',price:70,img:'https://nflocacoes.com.br/src/Rechaud%201%20cuba.png'},
+    {id:'p26',cat:'equipamentos',name:'Rechaud 2 Cubas',desc:'Versão com duas cubas para servir mais opções aquecidas.',price:80,img:'https://nflocacoes.com.br/src/Rechaud%202%20cubas.png'},
+    {id:'p27',cat:'equipamentos',name:'Freezer Esmaltec 325L',desc:'Resfria e congela — ideal para bebidas e alimentos do evento.',price:200,img:'https://nflocacoes.com.br/src/freezer.jpg'}
+  ];
+
+  var cart = {}; // id -> qty
+
+  function money(v){
+    return v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+  }
+
+  function renderCatalog(){
+    var groups = {};
+    products.forEach(function(p){
+      groups[p.cat] = groups[p.cat] || [];
+      groups[p.cat].push(p);
     });
+    Object.keys(groups).forEach(function(cat){
+      var container = document.querySelector('.grid[data-category="'+cat+'"]');
+      if(!container) return;
+      groups[cat].forEach(function(p){
+        var card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML =
+          '<div class="thumb"><img loading="lazy" src="'+p.img+'" alt="'+p.name+'"></div>'+
+          '<div class="body">'+
+            '<h4>'+p.name+'</h4>'+
+            '<p class="desc">'+p.desc+'</p>'+
+            '<div class="foot">'+
+              '<span class="price">'+money(p.price)+'</span>'+
+              '<div class="stepper">'+
+                '<button type="button" data-action="dec" data-id="'+p.id+'" aria-label="Diminuir quantidade">−</button>'+
+                '<span class="qty" id="qty-'+p.id+'">0</span>'+
+                '<button type="button" data-action="inc" data-id="'+p.id+'" aria-label="Aumentar quantidade">+</button>'+
+              '</div>'+
+            '</div>'+
+          '</div>';
+        container.appendChild(card);
+      });
+    });
+  }
+
+  function updateQty(id, delta){
+    var current = cart[id] || 0;
+    var next = Math.max(0, current + delta);
+    if(next === 0){ delete cart[id]; } else { cart[id] = next; }
+    var el = document.getElementById('qty-'+id);
+    if(el) el.textContent = next;
+    renderCart();
+  }
+
+  function renderCart(){
+    var list = document.getElementById('cart-list');
+    var emptyMsg = document.getElementById('empty-msg');
+    var totalEl = document.getElementById('cart-total');
+    var countEl = document.getElementById('cart-count');
+    list.innerHTML = '';
+    var total = 0, count = 0;
+    Object.keys(cart).forEach(function(id){
+      var p = products.find(function(x){return x.id === id;});
+      if(!p) return;
+      var qty = cart[id];
+      total += p.price * qty;
+      count += qty;
+      var li = document.createElement('li');
+      li.innerHTML = '<span>'+qty+'x '+p.name+'</span><span style="display:flex;align-items:center;gap:10px;"><strong>'+money(p.price*qty)+'</strong><button type="button" aria-label="Remover">✕</button></span>';
+      li.querySelector('button').addEventListener('click', function(){
+        delete cart[id];
+        var el = document.getElementById('qty-'+id);
+        if(el) el.textContent = 0;
+        renderCart();
+      });
+      list.appendChild(li);
+    });
+    emptyMsg.style.display = count === 0 ? 'block' : 'none';
+    totalEl.textContent = money(total);
+    countEl.textContent = count;
+  }
+
+  document.addEventListener('click', function(e){
+    var btn = e.target.closest('button[data-action]');
+    if(!btn) return;
+    var id = btn.getAttribute('data-id');
+    var delta = btn.getAttribute('data-action') === 'inc' ? 1 : -1;
+    updateQty(id, delta);
+  });
+
+  document.getElementById('orc-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    var ids = Object.keys(cart);
+    if(ids.length === 0){
+      alert('Selecione ao menos um item no catálogo antes de enviar o orçamento.');
+      return;
+    }
+    var nome = document.getElementById('f-nome').value.trim();
+    var tel = document.getElementById('f-tel').value.trim();
+    var end = document.getElementById('f-end').value.trim();
+    var data = document.getElementById('f-data').value;
+    var obs = document.getElementById('f-obs').value.trim();
+
+    var linhas = ['Olá! Gostaria de solicitar um orçamento com os seguintes itens:', ''];
+    var total = 0;
+    ids.forEach(function(id){
+      var p = products.find(function(x){return x.id === id;});
+      var qty = cart[id];
+      total += p.price * qty;
+      linhas.push('• '+qty+'x '+p.name+' — '+money(p.price*qty));
+    });
+    linhas.push('', 'Total estimado: '+money(total), '');
+    linhas.push('Nome: '+nome);
+    linhas.push('Telefone: '+tel);
+    linhas.push('Endereço do evento: '+end);
+    if(data) linhas.push('Data do evento: '+data);
+    if(obs) linhas.push('Observações: '+obs);
+
+    var msg = encodeURIComponent(linhas.join('\n'));
+    window.open('https://wa.me/'+WHATSAPP_NUMBER+'?text='+msg, '_blank');
+  });
+
+  renderCatalog();
+  renderCart();
+})();
 </script>
 
 </body>
